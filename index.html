@@ -478,4 +478,105 @@
     <div class="columns is-centered is-multiline mb-5">
       <div class="column is-full has-text-centered mb-4">
         <img src="./static/images/real-world-tasks.png" alt="Real World Tasks" class="method-image">
-        <p class="is-size-7
+        <p class="is-size-7 mt-2"><strong>Figure 5:</strong> Illustration of the stage-wise execution for the evaluated real-world manipulation tasks.</p>
+      </div>
+      
+      <div class="column is-full has-text-centered">
+        <img src="./static/images/real_world_results.png" alt="Real World Main Results" class="method-image">
+        <p class="is-size-7 mt-2"><strong>Figure 6:</strong> Average success scores across sequential stages for evaluated methods. Horizontal lines signify stage-wise trajectory execution stability.</p>
+      </div>
+    </div>
+
+    <div class="content text-justify box highlight-box">
+      <h4 class="title is-4">Core Empirical Findings</h4>
+      <p>
+        The real-world evaluation encompasses six complex multi-stage tasks ranging from two to four stages (e.g., Water Pouring, Drawer Loading, Pot Loading, Tower Stacking, Cup Matching, and Object Sorting). The empirical results demonstrate that <strong>FocalPolicy consistently outperforms existing baselines across all stages of every task</strong>, thoroughly validating its exceptional capability in capturing complex multi-chunk action distributions.
+      </p>
+      <p>
+        <strong>1. Mitigating Performance Decline in Final Stages:</strong><br>
+        Notably, the performance advantage of FocalPolicy is most pronounced in the final stages of the tasks. Traditional behavior cloning and action chunking strategies (e.g., FlowPolicy) often suffer from sharp performance degradation as execution progresses due to compounding errors. By leveraging the Foresight Composite Objective (FCO), FocalPolicy proactively predicts longer macro-trajectories and effectively bridges inter-chunk discontinuities, thereby substantially mitigating the compounding errors inherent in sequential execution.
+      </p>
+      <p>
+        <strong>2. Distal Temporal Coherence:</strong><br>
+        In both open-loop and closed-loop high-dimensional manipulation scenarios, FocalPolicy exhibits exceptional robustness compared to FlowPolicy, which lacks distal spatiotemporal modeling. By structurally constraining global motion trends (low-frequency) and local manipulation details (high-frequency) in the spectral domain, our policy maintains highly coherent trajectories that closely align with expert demonstrations across extended temporal dependencies, ensuring safe and efficient real-world deployment.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered section-title">BibTeX</h2>
+    <div class="box">
+      <pre><code>@inproceedings{he2026focalpolicy,
+  title={FocalPolicy: Frequency-Optimized Chunking and Locally Anchored Flow Matching for Coherent Visuomotor Policy},
+  author={He, Qian and Yang, Zhenshuo and Liang, Wenqi and Hao, Chunhui and Sebe, Nicu and Tian, Jiandong},
+  booktitle={Proceedings of the 43rd International Conference on Machine Learning},
+  year={2026}
+}</code></pre>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      This website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+    </p>
+  </div>
+</footer>
+
+<script>
+  let carouselIndices = {
+    'track-2stage': 0,
+    'track-3stage': 0,
+    'track-4stage': 0
+  };
+
+  function moveCarousel(direction, trackId) {
+    const track = document.getElementById(trackId);
+    const slides = track.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+    
+    // Determine number of visible slides based on window width
+    const visibleSlides = window.innerWidth <= 768 ? 1 : 3;
+    const maxIndex = totalSlides - visibleSlides;
+
+    carouselIndices[trackId] += direction;
+    
+    // Boundary checks
+    if (carouselIndices[trackId] < 0) {
+      carouselIndices[trackId] = 0;
+    }
+    if (carouselIndices[trackId] > maxIndex) {
+      carouselIndices[trackId] = maxIndex;
+    }
+    
+    // The slide width plus the gap (20px)
+    const slideWidth = slides[0].getBoundingClientRect().width + 20; 
+    track.style.transform = `translateX(-${carouselIndices[trackId] * slideWidth}px)`;
+  }
+
+  // Adjust carousel positions on window resize to prevent layout breaking
+  window.addEventListener('resize', () => {
+    const visibleSlides = window.innerWidth <= 768 ? 1 : 3;
+    
+    for (const trackId in carouselIndices) {
+      const track = document.getElementById(trackId);
+      if (!track) continue;
+      
+      const slides = track.querySelectorAll('.carousel-slide');
+      const maxIndex = slides.length - visibleSlides;
+      
+      if (carouselIndices[trackId] > maxIndex) {
+        carouselIndices[trackId] = maxIndex;
+      }
+      
+      const slideWidth = slides[0].getBoundingClientRect().width + 20;
+      track.style.transform = `translateX(-${carouselIndices[trackId] * slideWidth}px)`;
+    }
+  });
+</script>
+
+</body>
+</html>
