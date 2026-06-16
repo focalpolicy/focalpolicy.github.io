@@ -287,17 +287,17 @@
     <div class="columns is-vcentered mt-5">
       <div class="column is-half has-text-centered">
         <img src="./static/images/las_trajectory.png" alt="Time Sampling Trajectories" class="method-image">
-        <p class="is-size-7 mt-2 px-3"><strong>Figure 3:</strong> Time sampling comparison. Standard uniform sampling (left) vs. Locally Anchored Sampling (right) biasing \(r\) toward the terminal region to strengthen target-signal propagation.</p>
+        <p class="is-size-7 mt-2 px-3"><strong>Time sampling comparison.</strong> Standard uniform sampling (left) vs. Locally Anchored Sampling (right) biasing \(r\) toward the terminal region to strengthen target-signal propagation.</p>
       </div>
       <div class="column is-half has-text-centered">
         <img src="./static/images/las_distribution.png" alt="LAS Time Distribution Diagram" class="method-image">
-        <p class="is-size-7 mt-2 px-3"><strong>Figure 8:</strong> Visualization of the sampling distributions. The solid red curve highlights our optimal Logit-Normal time sampling mass distribution compared to vanilla uniform sampling (dashed line).</p>
+        <p class="is-size-7 mt-2 px-3"><strong>Visualization of the sampling distributions.</strong> The solid red curve highlights our optimal Logit-Normal time sampling mass distribution compared to vanilla uniform sampling (dashed line).</p>
       </div>
     </div>
 
     <div class="columns is-centered mt-5">
       <div class="column is-full">
-        <h4 class="title is-5 mb-3">Anchor Configuration Ablation (Table 6)</h4>
+        <h4 class="title is-5 mb-3">Anchor Configuration Ablation (Table below)</h4>
         <p class="is-size-6 mb-3 text-justify">
           Empirical validations demonstrate that local anchoring within the near-terminal region is essential. Shifting the anchor center toward earlier flow stages causes a rapid decay in target propagation efficiency, resulting in severe policy degradation:
         </p>
@@ -316,23 +316,23 @@
               <tr>
                 <td>\(\mu_r=0.4, \sigma_r=0.5\)</td>
                 <td>\(\approx 0.6\)</td>
-                <td>14.0% (H) / 17.7% (D) / 35.0% (P)</td>
-                <td>12.3% (SI) / 8.3% (HI) / 1.0 (PP) / 9.0% (D)</td>
-                <td>13.9%</td>
+                <td>14.0 (H) / 17.7 (D) / 35.0 (P)</td>
+                <td>12.3 (SI) / 8.3 (HI) / 1.0 (PP) / 9.0 (D)</td>
+                <td>13.9</td>
               </tr>
               <tr>
                 <td>\(\mu_r=1.4, \sigma_r=0.5\)</td>
                 <td>\(\approx 0.8\)</td>
-                <td>80.7% (H) / 59.7% (D) / 63.0% (P)</td>
-                <td>32.0% (SI) / 16.7% (HI) / 29.0 (PP) / 52.3% (D)</td>
-                <td>47.6%</td>
+                <td>80.7 (H) / 59.7 (D) / 63.0 (P)</td>
+                <td>32.0 (SI) / 16.7 (HI) / 29.0 (PP) / 52.3 (D)</td>
+                <td>47.6</td>
               </tr>
               <tr class="has-background-dark has-text-white has-text-weight-bold">
                 <td>Ours (\(\mu_r=4.0, \sigma_r=1.6\))</td>
                 <td>\(\approx 1.0\)</td>
-                <td>100.0% (H) / 63.2% (D) / 67.5% (P)</td>
-                <td>70.7% (SI) / 29.3% (HI) / 70.7 (PP) / 86.7% (D)</td>
-                <td>69.7%</td>
+                <td>100.0 (H) / 63.2 (D) / 67.5 (P)</td>
+                <td>70.7 (SI) / 29.3 (HI) / 70.7 (PP) / 86.7 (D)</td>
+                <td>69.7</td>
               </tr>
             </tbody>
           </table>
@@ -390,7 +390,7 @@
       </div>
       <div class="highlight-box mt-4">
         <p class="analysis-text">
-          <strong>Analysis:</strong> As presented in Table 1, FocalPolicy establishes a new state-of-the-art across the evaluated benchmarks. It achieves an impressive average success rate of <strong>83.6%</strong>, substantially outperforming existing leading baselines such as DP3 (79.9%) and FlowPolicy (79.4%). The superiority of our approach is particularly evident in tasks demanding extended temporal dependencies and multi-stage interactions (e.g., MetaWorld Very Hard tasks), proving that distal foresight effectively guides complex action distributions.
+          <strong>Analysis:</strong> As presented in table above, FocalPolicy establishes a new state-of-the-art across the evaluated benchmarks. It achieves an impressive average success rate of <strong>83.6%</strong>, substantially outperforming existing leading baselines such as DP3 (79.9%) and FlowPolicy (79.4%). The superiority of our approach is particularly evident in tasks demanding extended temporal dependencies and multi-stage interactions (e.g., MetaWorld Very Hard tasks), proving that distal foresight effectively guides complex action distributions.
         </p>
       </div>
     </div>
@@ -442,7 +442,7 @@
       </div>
       <div class="highlight-box mt-4">
         <p class="analysis-text">
-          <strong>Analysis:</strong> Table 2 verifies the plug-and-play generalizability of our proposed modules (FCO and LAS). Integrating our modules into existing baselines (e.g., DP3 and FlowPolicy) consistently elevates their performance across various specific tasks. For instance, incorporating our modules into FlowPolicy increases its average success rate from 55.3% to 63.3%, confirming that optimizing cross-chunk coherence and target-signal propagation benefits the foundational architecture universally.
+          <strong>Analysis:</strong> Table above verifies the plug-and-play generalizability of our proposed modules (FCO and LAS). Integrating our modules into existing baselines (e.g., DP3 and FlowPolicy) consistently elevates their performance across various specific tasks. For instance, incorporating our modules into FlowPolicy increases its average success rate from 55.3% to 63.3%, confirming that optimizing cross-chunk coherence and target-signal propagation benefits the foundational architecture universally.
         </p>
       </div>
     </div>
@@ -452,7 +452,7 @@
       <img src="./static/images/compounding_errors.png" alt="Compounding Errors" class="sim-image">
       <div class="highlight-box mt-4">
         <p class="analysis-text">
-          <strong>Analysis:</strong> As illustrated in Figure 7 (3D end-effector trajectories and error curves), FocalPolicy exhibits a distinct capability to mitigate compounding errors. Unlike standard flow matching policies that optimize chunks independently—resulting in disjointed spatial deviation—FocalPolicy utilizes frequency-domain structural regularization to preserve macroscopic trends. This foresight allows the policy to track expert macro-trajectories smoothly and prevents the catastrophic divergence typically observed in extended multi-stage manipulation.
+          <strong>Analysis:</strong> As illustrated in figure above (3D end-effector trajectories and error curves), FocalPolicy exhibits a distinct capability to mitigate compounding errors. Unlike standard flow matching policies that optimize chunks independently—resulting in disjointed spatial deviation—FocalPolicy utilizes frequency-domain structural regularization to preserve macroscopic trends. This foresight allows the policy to track expert macro-trajectories smoothly and prevents the catastrophic divergence typically observed in extended multi-stage manipulation.
         </p>
       </div>
     </div>
@@ -462,7 +462,7 @@
       <img src="./static/images/learning_curves.png" alt="Learning Curves" class="sim-image">
       <div class="highlight-box mt-4">
         <p class="analysis-text">
-          <strong>Analysis:</strong> Figure 4 showcases the success rate progression across training epochs. FocalPolicy not only converges more rapidly than the baselines but also maintains a more stable asymptote. This accelerated learning efficiency is primarily attributed to Locally Anchored Sampling (LAS), which circumvents the variance bottlenecks of uniform sampling by actively anchoring the time flow toward high-fidelity terminal regions, thereby ensuring robust target-signal propagation.
+          <strong>Analysis:</strong> Figure above showcases the success rate progression across training epochs. FocalPolicy not only converges more rapidly than the baselines but also maintains a more stable asymptote. This accelerated learning efficiency is primarily attributed to Locally Anchored Sampling (LAS), which circumvents the variance bottlenecks of uniform sampling by actively anchoring the time flow toward high-fidelity terminal regions, thereby ensuring robust target-signal propagation.
         </p>
       </div>
     </div>
@@ -478,12 +478,12 @@
     <div class="columns is-centered is-multiline mb-5">
       <div class="column is-full has-text-centered mb-4">
         <img src="./static/images/real-world-tasks.png" alt="Real World Tasks" class="method-image">
-        <p class="is-size-7 mt-2"><strong>Figure 5:</strong> Illustration of the stage-wise execution for the evaluated real-world manipulation tasks.</p>
+        <p class="is-size-7 mt-2"><strong>Real-world experimental setup and stage definitions. </strong> Illustration of the stage-wise execution for the evaluated real-world manipulation tasks.</p>
       </div>
       
       <div class="column is-full has-text-centered">
         <img src="./static/images/real_world_results.png" alt="Real World Main Results" class="method-image">
-        <p class="is-size-7 mt-2"><strong>Figure 6:</strong> Average success scores across sequential stages for evaluated methods. Horizontal lines signify stage-wise trajectory execution stability.</p>
+        <p class="is-size-7 mt-2"><strong>Real-world main results. </strong> Average success scores across sequential stages for evaluated methods. Horizontal lines signify stage-wise trajectory execution stability.</p>
       </div>
     </div>
 
