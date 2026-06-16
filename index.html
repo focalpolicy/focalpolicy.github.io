@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,16 +14,16 @@
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <style>
-    body { font-family: 'Noto Sans', sans-serif; line-height: 1.25; color: #000000; }
+    body { font-family: 'Noto Sans', sans-serif; line-height: 1.6; color: #333333; }
     .author-block { display: inline-block; margin-right: 15px; font-size: 1.2rem;}
     .publication-title { font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
-    .teaser-image, .method-image { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .method-image { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
     .abstract-content { text-align: justify; font-size: 1.1rem; }
     .section-title { font-weight: 600; margin-bottom: 1.5rem; }
-    .video-container { border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-    .highlight-box { background-color: #f5f7fa; padding: 1.5rem; border-radius: 8px; border-left: 5px solid #3273dc; }
+    .video-container { border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background-color: #000;}
+    .highlight-box { background-color: #f5f7fa; padding: 1.5rem; border-radius: 8px; border-left: 5px solid #363636; }
     .table th { text-align: center !important; vertical-align: middle !important; }
-    .table td { vertical-align: middle !important; }
+    .table td { vertical-align: middle !important; text-align: center; }
   </style>
 </head>
 <body>
@@ -64,11 +64,11 @@
           <span class="icon"><i class="fab fa-github"></i></span>
           <span>Code</span>
         </a>
-        <a href="YOUR_SIM_DATASET_LINK" class="button is-link is-rounded is-light">
+        <a href="YOUR_SIM_DATASET_LINK" class="button is-dark is-rounded">
           <span class="icon"><i class="fas fa-database"></i></span>
           <span>Sim Dataset</span>
         </a>
-        <a href="YOUR_REAL_DATASET_LINK" class="button is-link is-rounded is-light">
+        <a href="YOUR_REAL_DATASET_LINK" class="button is-dark is-rounded">
           <span class="icon"><i class="fas fa-robot"></i></span>
           <span>Real Dataset</span>
         </a>
@@ -83,37 +83,53 @@
     <p class="has-text-centered mb-5">FocalPolicy seamlessly executes multi-stage tasks by bridging inter-chunk discontinuities.</p>
     
     <div class="columns is-multiline is-centered">
-      <div class="column is-half">
+      <div class="column is-one-third">
         <div class="video-container">
           <video autoplay controls muted loop playsinline width="100%">
-            <source src="./static/videos/tower_stacking.mp4" type="video/mp4">
+            <source src="./static/videos/water_pouring.mp4" type="video/mp4">
           </video>
         </div>
-        <p class="has-text-centered mt-2 has-text-weight-semibold">Tower Stacking (3 Stages)</p>
+        <p class="has-text-centered mt-2 has-text-weight-semibold">Water Pouring<br>(2 Stages)</p>
       </div>
-      <div class="column is-half">
+      <div class="column is-one-third">
         <div class="video-container">
           <video autoplay controls muted loop playsinline width="100%">
-            <source src="./static/videos/cup_matching.mp4" type="video/mp4">
+            <source src="./static/videos/drawer_loading.mp4" type="video/mp4">
           </video>
         </div>
-        <p class="has-text-centered mt-2 has-text-weight-semibold">Cup Matching (4 Stages)</p>
+        <p class="has-text-centered mt-2 has-text-weight-semibold">Drawer Loading<br>(2 Stages)</p>
       </div>
-      <div class="column is-half">
+      <div class="column is-one-third">
         <div class="video-container">
           <video autoplay controls muted loop playsinline width="100%">
             <source src="./static/videos/pot_loading.mp4" type="video/mp4">
           </video>
         </div>
-        <p class="has-text-centered mt-2 has-text-weight-semibold">Pot Loading (3 Stages)</p>
+        <p class="has-text-centered mt-2 has-text-weight-semibold">Pot Loading<br>(3 Stages)</p>
       </div>
-      <div class="column is-half">
+      <div class="column is-one-third">
+        <div class="video-container">
+          <video autoplay controls muted loop playsinline width="100%">
+            <source src="./static/videos/tower_stacking.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="has-text-centered mt-2 has-text-weight-semibold">Tower Stacking<br>(3 Stages)</p>
+      </div>
+      <div class="column is-one-third">
+        <div class="video-container">
+          <video autoplay controls muted loop playsinline width="100%">
+            <source src="./static/videos/cup_matching.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="has-text-centered mt-2 has-text-weight-semibold">Cup Matching<br>(4 Stages)</p>
+      </div>
+      <div class="column is-one-third">
         <div class="video-container">
           <video autoplay controls muted loop playsinline width="100%">
             <source src="./static/videos/object_sorting.mp4" type="video/mp4">
           </video>
         </div>
-        <p class="has-text-centered mt-2 has-text-weight-semibold">Object Sorting (4 Stages)</p>
+        <p class="has-text-centered mt-2 has-text-weight-semibold">Object Sorting<br>(4 Stages)</p>
       </div>
     </div>
   </div>
@@ -140,23 +156,19 @@
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered section-title">Motivation & Comparison</h2>
-    <div class="columns is-vcentered">
-      <div class="column is-half">
+    <div class="columns is-centered">
+      <div class="column is-full has-text-centered">
+        <img src="./static/images/comparison.png" alt="Method Comparison" class="method-image mb-3">
+        <p class="is-size-7 mb-5"><strong>Comparison:</strong> Previous chunk-based policies (left) vs. FocalPolicy (right). FocalPolicy employs a Foresight Composite Objective to synergize proximal precision with distal coherence across chunks.</p>
+        
         <div class="content text-justify">
           <p>
-            Current imitation learning-based policies adopt action chunking to mitigate compounding errors. However, frameworks like Consistency Flow Matching (CFM) typically focus entirely on optimizing <strong>intra-chunk refinement</strong>.
-          </p>
-          <p>
-            Because they overlook <strong>inter-chunk discontinuities</strong>, they struggle to perceive long-horizon motion trends. This leads to disjointed execution and compounding errors over multi-stage tasks. 
+            Current imitation learning-based policies adopt action chunking to mitigate compounding errors. However, frameworks like Consistency Flow Matching (CFM) typically focus entirely on optimizing <strong>intra-chunk refinement</strong>. Because they overlook <strong>inter-chunk discontinuities</strong>, they struggle to perceive long-horizon motion trends. This leads to disjointed execution and compounding errors over multi-stage tasks. 
           </p>
           <p>
             <strong>FocalPolicy</strong> shifts the paradigm from single-chunk refinement to foresight-aware multi-chunk modeling. By utilizing prioritized learning, the policy ensures fine-grained fidelity for proximal actions while maintaining coarse structural coherence for distal trajectories.
           </p>
         </div>
-      </div>
-      <div class="column is-half has-text-centered">
-        <img src="./static/images/comparison.png" alt="Method Comparison" class="method-image">
-        <p class="is-size-7 mt-2"><strong>Comparison:</strong> Previous chunk-based policies (left) vs. FocalPolicy (right).</p>
       </div>
     </div>
   </div>
@@ -197,67 +209,66 @@
         In consistency flow matching training, standard uniform time sampling imposes consistency constraints randomly along the trajectory, which dramatically weakens the propagation of true target signals. This variance bottleneck slows down the optimization of complex distribution trajectories.
       </p>
       <p>
-        To address this, <strong>Locally Anchored Sampling (LAS)</strong> actively biases the teacher (anchor) timestep \(r\) toward the high-fidelity terminal region using a Logit-Normal distribution, while keeping the student flow time \(\tau\) uniformly sampled.
+        To address this, <strong>Locally Anchored Sampling (LAS)</strong> actively biases the teacher (anchor) timestep \(r\) toward the high-fidelity terminal region using a Logit-Normal distribution, while keeping the student flow time \(\tau\) uniformly sampled. We formalize the <strong>Target-signal Propagation Efficiency \(\mathcal{E}(\tau)\)</strong> as the alignment fidelity between the consistency gradient \(g_{cons}\) and the ideal supervised gradient \(g_{sup}\):
       </p>
-    </div>
-
-    <div class="columns is-multiline mt-4">
-      <div class="column is-full">
-        <div class="highlight-box">
-          <h4 class="title is-5 mb-2">Mathematical Formulation</h4>
-          <p>We formalize the <strong>Target-signal Propagation Efficiency \(\mathcal{E}(\tau)\)</strong> as the alignment fidelity between the consistency gradient \(g_{cons}\) and the ideal supervised gradient \(g_{sup}\):</p>
-          $$\mathcal{E}(\tau) := -\mathbb{E}_{r|\tau}\left[ \|g_{cons}(\tau,r) - g_{sup}(\tau)\|_2^2 \right]$$
-          <p class="mt-3">The anchor timestep \(r\) is sampled stochastically via a Logit-Normal reparameterization:</p>
-          $$r = \text{sigmoid}(\mu_r + \sigma_r \cdot \epsilon), \quad \epsilon \sim \mathcal{N}(0,1)$$
-          <p class="mt-3">In practice, we configure <strong>\(\mu_r = 4.0\), \(\sigma_r = 1.6\)</strong>. This creates a distribution centered tightly near the boundary (median \(r \approx 0.982\)) with a heavy left tail, maximizing teacher prediction accuracy while preserving stochastic robustness to eliminate overfitting.</p>
-        </div>
+      <div class="has-text-centered mb-4">
+        $$\mathcal{E}(\tau) := -\mathbb{E}_{r|\tau}\left[ \|g_{cons}(\tau,r) - g_{sup}(\tau)\|_2^2 \right]$$
       </div>
     </div>
 
     <div class="columns is-vcentered mt-5">
       <div class="column is-half has-text-centered">
-        <img src="./static/images/las_distribution.png" alt="LAS Time Distribution Diagram" class="method-image">
-        <p class="is-size-7 mt-2"><strong>Figure 3 & 8:</strong> Logit-Normal time sampling mass distribution compared to vanilla uniform sampling.</p>
+        <img src="./static/images/las_trajectory.png" alt="Time Sampling Trajectories" class="method-image">
+        <p class="is-size-7 mt-2 px-3"><strong>Figure 3:</strong> Time sampling comparison. Standard uniform sampling (left) vs. Locally Anchored Sampling (right) biasing \(r\) toward the terminal region to strengthen target-signal propagation.</p>
       </div>
-      <div class="column is-half">
+      <div class="column is-half has-text-centered">
+        <img src="./static/images/las_distribution.png" alt="LAS Time Distribution Diagram" class="method-image">
+        <p class="is-size-7 mt-2 px-3"><strong>Figure 8:</strong> Visualization of the sampling distributions. The solid red curve highlights our optimal Logit-Normal time sampling mass distribution compared to vanilla uniform sampling (dashed line).</p>
+      </div>
+    </div>
+
+    <div class="columns is-centered mt-5">
+      <div class="column is-full">
         <h4 class="title is-5 mb-3">Anchor Configuration Ablation (Table 6)</h4>
         <p class="is-size-6 mb-3 text-justify">
           Empirical validations demonstrate that local anchoring within the near-terminal region is essential. Shifting the anchor center toward earlier flow stages causes a rapid decay in target propagation efficiency, resulting in severe policy degradation:
         </p>
-        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
-          <thead>
-            <tr>
-              <th>Configuration of \(r\)</th>
-              <th>Anchor Center</th>
-              <th>Adroit Success Rate (%)</th>
-              <th>MetaWorld Success Rate (%)</th>
-              <th>Average (%)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>\(\mu_r=0.4, \sigma_r=0.5\)</td>
-              <td>\(\approx 0.6\)</td>
-              <td>14.0% (Hammer)</td>
-              <td>13.9% (Sweep-Into)</td>
-              <td>13.9%</td>
-            </tr>
-            <tr>
-              <td>\(\mu_r=1.4, \sigma_r=0.5\)</td>
-              <td>\(\approx 0.8\)</td>
-              <td>80.7% (Hammer)</td>
-              <td>47.6% (Sweep-Into)</td>
-              <td>47.6%</td>
-            </tr>
-            <tr class="has-background-link-light has-text-weight-bold">
-              <td>Ours (\(\mu_r=4.0, \sigma_r=1.6\))</td>
-              <td>\(\approx 1.0\)</td>
-              <td><strong>100.0% / 63.2%</strong></td>
-              <td><strong>70.7% / 29.3%</strong></td>
-              <td><strong>69.7%</strong></td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="table-container">
+          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-size-6">
+            <thead>
+              <tr class="has-background-grey-lighter">
+                <th>Configuration of \(r\)</th>
+                <th>Anchor Center</th>
+                <th>Adroit Success Rate (%)</th>
+                <th>MetaWorld Success Rate (%)</th>
+                <th>Average (%)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>\(\mu_r=0.4, \sigma_r=0.5\)</td>
+                <td>\(\approx 0.6\)</td>
+                <td>14.0% (Hammer)</td>
+                <td>13.9% (Sweep-Into)</td>
+                <td>13.9%</td>
+              </tr>
+              <tr>
+                <td>\(\mu_r=1.4, \sigma_r=0.5\)</td>
+                <td>\(\approx 0.8\)</td>
+                <td>80.7% (Hammer)</td>
+                <td>47.6% (Sweep-Into)</td>
+                <td>47.6%</td>
+              </tr>
+              <tr class="has-background-dark has-text-white has-text-weight-bold">
+                <td>Ours (\(\mu_r=4.0, \sigma_r=1.6\))</td>
+                <td>\(\approx 1.0\)</td>
+                <td>100.0% / 63.2%</td>
+                <td>70.7% / 29.3%</td>
+                <td>69.7%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>
@@ -266,20 +277,144 @@
 <section class="section has-background-white-ter">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered section-title">Simulation Results</h2>
-    <p class="has-text-centered mb-4">Evaluated across <strong>53 tasks</strong> on Adroit and MetaWorld benchmarks.</p>
-    <div class="columns is-centered is-vcentered">
-      <div class="column is-two-thirds">
-        <img src="./static/images/sim_radar.png" alt="Simulation Radar Chart" class="method-image">
+    <p class="has-text-centered mb-5">Comprehensive evaluation across <strong>53 manipulation tasks</strong> from the Adroit and MetaWorld platforms.</p>
+    
+    <div class="columns is-vcentered mb-6">
+      <div class="column is-half has-text-centered">
+        <h4 class="title is-5 mb-3">Mitigation of Compounding Errors</h4>
+        <img src="./static/images/compounding_errors.png" alt="Compounding Errors" class="method-image">
+        <p class="is-size-7 mt-2 text-justify px-3"><strong>Figure 7:</strong> 3D end-effector trajectories (left) and corresponding error curves (right). FocalPolicy exhibits significantly lower spatial deviation and tracks expert trajectories more closely than FlowPolicy over long horizons.</p>
       </div>
-      <div class="column is-one-third">
-        <div class="content">
-          <ul>
-            <li><strong>State-of-the-art Performance:</strong> Achieves an average success rate of <strong>83.6%</strong>, outperforming DP3 (79.9%), FlowPolicy (79.4%), and FreqPolicy (75.1%).</li>
-            <li><strong>Reduced Compounding Errors:</strong> FCO effectively mitigates spatial trajectory drift compared to FlowPolicy over long horizons.</li>
-            <li><strong>Higher Learning Efficiency:</strong> Thanks to LAS, FocalPolicy converges faster and stabilizes more effectively during training.</li>
-          </ul>
+      <div class="column is-half has-text-centered">
+        <h4 class="title is-5 mb-3">Learning Efficiency</h4>
+        <img src="./static/images/learning_curves.png" alt="Learning Curves" class="method-image">
+        <p class="is-size-7 mt-2 text-justify px-3"><strong>Figure 4:</strong> Benefiting from higher target-signal propagation efficiency via Locally Anchored Sampling (LAS), FocalPolicy converges faster to higher success rates compared to FlowPolicy.</p>
+      </div>
+    </div>
+
+    <div class="columns is-multiline">
+      <div class="column is-full">
+        <h4 class="title is-5 mb-3">Quantitative Comparison (Table 1)</h4>
+        <div class="table-container">
+          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-size-6">
+            <thead>
+              <tr class="has-background-grey-lighter">
+                <th>Method</th>
+                <th>NFE</th>
+                <th>Adroit<br>(3)</th>
+                <th>MetaWorld<br>Easy (28)</th>
+                <th>MetaWorld<br>Medium (11)</th>
+                <th>MetaWorld<br>Hard (6)</th>
+                <th>MetaWorld<br>Very Hard (5)</th>
+                <th>Average</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>DP</td><td>10</td><td>31.7</td><td>83.6</td><td>31.1</td><td>9.0</td><td>26.6</td><td>55.9</td>
+              </tr>
+              <tr>
+                <td>ManiCM</td><td>1</td><td>72.3</td><td>83.6</td><td>55.6</td><td>33.3</td><td>67.0</td><td>69.9</td>
+              </tr>
+              <tr>
+                <td>SDM</td><td>1</td><td>74.0</td><td>86.5</td><td>65.8</td><td>35.8</td><td>71.6</td><td>74.4</td>
+              </tr>
+              <tr>
+                <td>DP3</td><td>10</td><td>70.4 ± 3.2</td><td>89.3 ± 0.1</td><td>77.2 ± 2.7</td><td>47.1 ± 2.3</td><td>78.1 ± 0.9</td><td>79.9</td>
+              </tr>
+              <tr>
+                <td>FlowPolicy</td><td>1</td><td>69.0 ± 2.6</td><td>91.1 ± 0.2</td><td>71.9 ± 1.2</td><td>45.2 ± 0.9</td><td>77.9 ± 0.6</td><td>79.4</td>
+              </tr>
+              <tr>
+                <td>FreqPolicy</td><td>-</td><td>68.6 ± 0.8</td><td>85.4 ± 0.2</td><td>66.6 ± 2.0</td><td>46.4 ± 2.1</td><td>74.4 ± 2.4</td><td>75.1</td>
+              </tr>
+              <tr class="has-background-dark has-text-white has-text-weight-bold">
+                <td>FocalPolicy (Ours)</td><td>1</td><td>76.9 ± 2.2</td><td>91.4 ± 0.1</td><td>81.9 ± 1.6</td><td>51.8 ± 3.8</td><td>85.1 ± 1.6</td><td>83.6</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+
+      <div class="column is-full mt-4">
+        <h4 class="title is-5 mb-3">Module Generalizability on Specific Tasks (Table 2)</h4>
+        <div class="table-container">
+          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-size-7">
+            <thead>
+              <tr class="has-background-grey-lighter">
+                <th rowspan="2">Method</th>
+                <th colspan="3">Adroit</th>
+                <th colspan="4">MetaWorld</th>
+                <th rowspan="2">Average</th>
+              </tr>
+              <tr class="has-background-grey-lighter">
+                <th>Hammer</th>
+                <th>Door</th>
+                <th>Pen</th>
+                <th>Sweep-Into</th>
+                <th>Hand-Insert</th>
+                <th>Pick-Place</th>
+                <th>Disassemble</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>DP3</td>
+                <td>85.7 ± 8.3</td><td>53.5 ± 5.1</td><td>98.3 ± 2.9</td><td>60.7 ± 11.9</td><td>14.3 ± 2.9</td><td>15.3 ± 0.6</td><td>61.7 ± 9.3</td><td>55.4</td>
+              </tr>
+              <tr>
+                <td>DP3 w. Ours</td>
+                <td>98.3 ± 1.5</td><td>58.3 ± 2.5</td><td>94.0 ± 0.0</td><td>53.0 ± 6.2</td><td>61.0 ± 3.5</td><td>37.3 ± 31.8</td><td>16.0 ± 2.6</td><td>60.6</td>
+              </tr>
+              <tr>
+                <td>FlowPolicy</td>
+                <td>59.3 ± 3.5</td><td>59.7 ± 2.1</td><td>98.7 ± 2.3</td><td>61.3 ± 3.2</td><td>62.7 ± 4.5</td><td>62.3 ± 17.6</td><td>16.5 ± 0.7</td><td>55.3</td>
+              </tr>
+              <tr>
+                <td>FlowPolicy w. Ours</td>
+                <td>99.7 ± 0.6</td><td>58.3 ± 3.8</td><td>53.0 ± 3.5</td><td>67.5 ± 1.3</td><td>70.7 ± 22.0</td><td>29.3 ± 16.2</td><td>70.7 ± 4.2</td><td>63.3</td>
+              </tr>
+              <tr>
+                <td>FreqPolicy</td>
+                <td>94.3 ± 2.1</td><td>58.3 ± 3.8</td><td>53.0 ± 3.5</td><td>15.3 ± 4.5</td><td>0.0 ± 0.0</td><td>16.0 ± 3.0</td><td>57.7 ± 4.2</td><td>57.8</td>
+              </tr>
+              <tr class="has-background-dark has-text-white has-text-weight-bold">
+                <td>FocalPolicy (Ours)</td>
+                <td>100.0 ± 0.0</td><td>63.2 ± 5.3</td><td>67.5 ± 1.3</td><td>70.7 ± 22.0</td><td>29.3 ± 16.2</td><td>70.7 ± 4.2</td><td>86.7 ± 1.5</td><td>69.7</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered section-title">Real-World Main Results & Analysis</h2>
+    <p class="has-text-centered mb-5">Quantitative validation across six long-horizon staged real-world robotic tasks.</p>
+    
+    <div class="columns is-centered mb-5">
+      <div class="column is-four-fifths has-text-centered">
+        <img src="./static/images/real_world_results.png" alt="Real World Main Results" class="method-image">
+        <p class="is-size-7 mt-2"><strong>Figure 6:</strong> Average success scores across sequential stages for evaluated methods. Horizontal lines signify stage-wise trajectory execution stability.</p>
+      </div>
+    </div>
+
+    <div class="content text-justify box highlight-box">
+      <h4 class="title is-4">Core Empirical Findings</h4>
+      <p>
+        The real-world evaluation encompasses six complex long-horizon tasks ranging from two to four stages (e.g., Water Pouring, Drawer Loading, Pot Loading, Tower Stacking, Cup Matching, and Object Sorting). The empirical results (shown above) demonstrate that <strong>FocalPolicy consistently outperforms existing baselines across all stages of every task</strong>, thoroughly validating its exceptional capability in capturing complex long-horizon action distributions.
+      </p>
+      <p>
+        <strong>1. Mitigating Performance Decline in Final Stages:</strong><br>
+        Notably, the performance advantage of FocalPolicy is most pronounced in the final stages of the tasks. Traditional behavior cloning and action chunking strategies (e.g., FlowPolicy) often suffer from sharp performance degradation as execution progresses due to compounding errors. By leveraging the Foresight Composite Objective (FCO), FocalPolicy proactively predicts longer macro-trajectories and effectively bridges inter-chunk discontinuities, thereby substantially mitigating the compounding errors inherent in imitation learning.
+      </p>
+      <p>
+        <strong>2. Long-Horizon Temporal Coherence:</strong><br>
+        In both open-loop and closed-loop high-dimensional manipulation scenarios, FocalPolicy exhibits exceptional robustness compared to FlowPolicy, which lacks long-horizon spatiotemporal modeling. By structurally constraining global motion trends (low-frequency) and local manipulation details (high-frequency) in the spectral domain, our policy maintains highly coherent trajectories that closely align with expert demonstrations over extended horizons, ensuring safe and efficient real-world deployment.
+      </p>
     </div>
   </div>
 </section>
