@@ -18,12 +18,73 @@
     .author-block { display: inline-block; margin-right: 15px; font-size: 1.2rem;}
     .publication-title { font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
     .method-image { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .sim-image { max-width: 80%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin: 0 auto; display: block; }
     .abstract-content { text-align: justify; font-size: 1.1rem; }
     .section-title { font-weight: 600; margin-bottom: 1.5rem; }
-    .video-container { border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); background-color: #000;}
     .highlight-box { background-color: #f5f7fa; padding: 1.5rem; border-radius: 8px; border-left: 5px solid #363636; }
     .table th { text-align: center !important; vertical-align: middle !important; }
     .table td { vertical-align: middle !important; text-align: center; }
+    .analysis-text { text-align: justify; font-size: 1.05rem; }
+
+    /* Video Carousel Styles */
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      padding: 0 50px; /* Space for navigation arrows */
+      overflow: hidden;
+    }
+    .carousel-track-wrapper {
+      overflow: hidden;
+      width: 100%;
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 0.4s ease-in-out;
+      gap: 20px;
+    }
+    .carousel-slide {
+      flex: 0 0 calc(33.333% - 13.333px); /* 3 items per view */
+      min-width: calc(33.333% - 13.333px);
+    }
+    .video-container {
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+      background-color: #000;
+      aspect-ratio: 9/16; /* Adjust based on your vertical video ratio */
+      display: flex;
+      align-items: center;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 45%;
+      transform: translateY(-50%);
+      background: rgba(54, 54, 54, 0.7);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s ease;
+    }
+    .carousel-btn:hover { background: rgba(54, 54, 54, 1); }
+    .prev-btn { left: 0; }
+    .next-btn { right: 0; }
+
+    /* Responsive adjustment for mobile */
+    @media (max-width: 768px) {
+      .carousel-slide {
+        flex: 0 0 100%;
+        min-width: 100%;
+      }
+      .carousel-container { padding: 0 40px; }
+    }
   </style>
 </head>
 <body>
@@ -79,58 +140,66 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered section-title">Real-World Long-Horizon Execution</h2>
-    <p class="has-text-centered mb-5">FocalPolicy seamlessly executes multi-stage tasks by bridging inter-chunk discontinuities.</p>
+    <h2 class="title is-3 has-text-centered section-title">Real-World Multi-Stage Execution</h2>
+    <p class="has-text-centered mb-5">FocalPolicy seamlessly executes sequential multi-stage tasks by bridging inter-chunk discontinuities.</p>
     
-    <div class="columns is-multiline is-centered">
-      <div class="column is-one-third">
-        <div class="video-container">
-          <video autoplay controls muted loop playsinline width="100%">
-            <source src="./static/videos/water_pouring.mp4" type="video/mp4">
-          </video>
+    <div class="carousel-container">
+      <button class="carousel-btn prev-btn" onclick="moveCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
+      
+      <div class="carousel-track-wrapper">
+        <div class="carousel-track" id="videoTrack">
+          <div class="carousel-slide">
+            <div class="video-container">
+              <video autoplay controls muted loop playsinline width="100%">
+                <source src="./static/videos/water_pouring.mp4" type="video/mp4">
+              </video>
+            </div>
+            <p class="has-text-centered mt-3 has-text-weight-semibold">Water Pouring<br><span class="has-text-grey is-size-7">(2 Stages)</span></p>
+          </div>
+          <div class="carousel-slide">
+            <div class="video-container">
+              <video autoplay controls muted loop playsinline width="100%">
+                <source src="./static/videos/drawer_loading.mp4" type="video/mp4">
+              </video>
+            </div>
+            <p class="has-text-centered mt-3 has-text-weight-semibold">Drawer Loading<br><span class="has-text-grey is-size-7">(2 Stages)</span></p>
+          </div>
+          <div class="carousel-slide">
+            <div class="video-container">
+              <video autoplay controls muted loop playsinline width="100%">
+                <source src="./static/videos/pot_loading.mp4" type="video/mp4">
+              </video>
+            </div>
+            <p class="has-text-centered mt-3 has-text-weight-semibold">Pot Loading<br><span class="has-text-grey is-size-7">(3 Stages)</span></p>
+          </div>
+          <div class="carousel-slide">
+            <div class="video-container">
+              <video autoplay controls muted loop playsinline width="100%">
+                <source src="./static/videos/tower_stacking.mp4" type="video/mp4">
+              </video>
+            </div>
+            <p class="has-text-centered mt-3 has-text-weight-semibold">Tower Stacking<br><span class="has-text-grey is-size-7">(3 Stages)</span></p>
+          </div>
+          <div class="carousel-slide">
+            <div class="video-container">
+              <video autoplay controls muted loop playsinline width="100%">
+                <source src="./static/videos/cup_matching.mp4" type="video/mp4">
+              </video>
+            </div>
+            <p class="has-text-centered mt-3 has-text-weight-semibold">Cup Matching<br><span class="has-text-grey is-size-7">(4 Stages)</span></p>
+          </div>
+          <div class="carousel-slide">
+            <div class="video-container">
+              <video autoplay controls muted loop playsinline width="100%">
+                <source src="./static/videos/object_sorting.mp4" type="video/mp4">
+              </video>
+            </div>
+            <p class="has-text-centered mt-3 has-text-weight-semibold">Object Sorting<br><span class="has-text-grey is-size-7">(4 Stages)</span></p>
+          </div>
         </div>
-        <p class="has-text-centered mt-2 has-text-weight-semibold">Water Pouring<br>(2 Stages)</p>
       </div>
-      <div class="column is-one-third">
-        <div class="video-container">
-          <video autoplay controls muted loop playsinline width="100%">
-            <source src="./static/videos/drawer_loading.mp4" type="video/mp4">
-          </video>
-        </div>
-        <p class="has-text-centered mt-2 has-text-weight-semibold">Drawer Loading<br>(2 Stages)</p>
-      </div>
-      <div class="column is-one-third">
-        <div class="video-container">
-          <video autoplay controls muted loop playsinline width="100%">
-            <source src="./static/videos/pot_loading.mp4" type="video/mp4">
-          </video>
-        </div>
-        <p class="has-text-centered mt-2 has-text-weight-semibold">Pot Loading<br>(3 Stages)</p>
-      </div>
-      <div class="column is-one-third">
-        <div class="video-container">
-          <video autoplay controls muted loop playsinline width="100%">
-            <source src="./static/videos/tower_stacking.mp4" type="video/mp4">
-          </video>
-        </div>
-        <p class="has-text-centered mt-2 has-text-weight-semibold">Tower Stacking<br>(3 Stages)</p>
-      </div>
-      <div class="column is-one-third">
-        <div class="video-container">
-          <video autoplay controls muted loop playsinline width="100%">
-            <source src="./static/videos/cup_matching.mp4" type="video/mp4">
-          </video>
-        </div>
-        <p class="has-text-centered mt-2 has-text-weight-semibold">Cup Matching<br>(4 Stages)</p>
-      </div>
-      <div class="column is-one-third">
-        <div class="video-container">
-          <video autoplay controls muted loop playsinline width="100%">
-            <source src="./static/videos/object_sorting.mp4" type="video/mp4">
-          </video>
-        </div>
-        <p class="has-text-centered mt-2 has-text-weight-semibold">Object Sorting<br>(4 Stages)</p>
-      </div>
+
+      <button class="carousel-btn next-btn" onclick="moveCarousel(1)"><i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
 </section>
@@ -142,7 +211,7 @@
         <h2 class="title is-3 has-text-centered section-title">Abstract</h2>
         <div class="content abstract-content highlight-box">
           <p>
-            Visuomotor policies aim to learn complex manipulation tasks from expert demonstrations. However, generating smooth and coherent trajectories remains challenging, as it requires balancing proximal precision with distal foresight. Existing approaches typically focus on optimizing intra-chunk action distributions, often neglecting the inter-chunk coherence. Consequently, inter-chunk discontinuities significantly impede the learning of coherent long-horizon actions.
+            Visuomotor policies aim to learn complex manipulation tasks from expert demonstrations. However, generating smooth and coherent trajectories remains challenging, as it requires balancing proximal precision with distal foresight. Existing approaches typically focus on optimizing intra-chunk action distributions, often neglecting the inter-chunk coherence. Consequently, inter-chunk discontinuities significantly impede the learning of coherent macro-trajectories.
           </p>
           <p>
             To overcome this limitation and achieve a synergetic balance between precision and foresight, we propose <strong>FocalPolicy</strong>, a foresight-aware visuomotor policy that combines <strong>Frequency-Optimized Chunking</strong> with <strong>Locally Anchored flow matching</strong>. We introduce a foresight composite objective that supervises time-domain alignment within the proximal actions while regularizing frequency-domain structure over multiple future action chunks to improve cross-chunk coherence. To efficiently learn complex action distributions, we design locally anchored sampling to enhance target signal propagation efficiency during consistency flow matching training. Extensive experiments demonstrate that FocalPolicy outperforms existing approaches and confirm the generalizability of our modules.
@@ -163,7 +232,7 @@
         
         <div class="content text-justify">
           <p>
-            Current imitation learning-based policies adopt action chunking to mitigate compounding errors. However, frameworks like Consistency Flow Matching (CFM) typically focus entirely on optimizing <strong>intra-chunk refinement</strong>. Because they overlook <strong>inter-chunk discontinuities</strong>, they struggle to perceive long-horizon motion trends. This leads to disjointed execution and compounding errors over multi-stage tasks. 
+            Current imitation learning-based policies adopt action chunking to mitigate compounding errors. However, frameworks like Consistency Flow Matching (CFM) typically focus entirely on optimizing <strong>intra-chunk refinement</strong>. Because they overlook <strong>inter-chunk discontinuities</strong>, they struggle to perceive global motion trends. This leads to disjointed execution and compounding errors over sequential stages. 
           </p>
           <p>
             <strong>FocalPolicy</strong> shifts the paradigm from single-chunk refinement to foresight-aware multi-chunk modeling. By utilizing prioritized learning, the policy ensures fine-grained fidelity for proximal actions while maintaining coarse structural coherence for distal trajectories.
@@ -277,123 +346,135 @@
 <section class="section has-background-white-ter">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered section-title">Simulation Results</h2>
-    <p class="has-text-centered mb-5">Comprehensive evaluation across <strong>53 manipulation tasks</strong> from the Adroit and MetaWorld platforms.</p>
+    <p class="has-text-centered mb-6">Comprehensive evaluation across <strong>53 manipulation tasks</strong> from the Adroit and MetaWorld platforms.</p>
     
-    <div class="columns is-vcentered mb-6">
-      <div class="column is-half has-text-centered">
-        <h4 class="title is-5 mb-3">Mitigation of Compounding Errors</h4>
-        <img src="./static/images/compounding_errors.png" alt="Compounding Errors" class="method-image">
-        <p class="is-size-7 mt-2 text-justify px-3"><strong>Figure 7:</strong> 3D end-effector trajectories (left) and corresponding error curves (right). FocalPolicy exhibits significantly lower spatial deviation and tracks expert trajectories more closely than FlowPolicy over long horizons.</p>
+    <div class="mb-6">
+      <h4 class="title is-4 has-text-centered mb-4">1. State-of-the-art Performance</h4>
+      <div class="table-container">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-size-6" style="margin: 0 auto;">
+          <thead>
+            <tr class="has-background-grey-lighter">
+              <th>Method</th>
+              <th>NFE</th>
+              <th>Adroit<br>(3)</th>
+              <th>MetaWorld<br>Easy (28)</th>
+              <th>MetaWorld<br>Medium (11)</th>
+              <th>MetaWorld<br>Hard (6)</th>
+              <th>MetaWorld<br>Very Hard (5)</th>
+              <th>Average</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DP</td><td>10</td><td>31.7</td><td>83.6</td><td>31.1</td><td>9.0</td><td>26.6</td><td>55.9</td>
+            </tr>
+            <tr>
+              <td>ManiCM</td><td>1</td><td>72.3</td><td>83.6</td><td>55.6</td><td>33.3</td><td>67.0</td><td>69.9</td>
+            </tr>
+            <tr>
+              <td>SDM</td><td>1</td><td>74.0</td><td>86.5</td><td>65.8</td><td>35.8</td><td>71.6</td><td>74.4</td>
+            </tr>
+            <tr>
+              <td>DP3</td><td>10</td><td>70.4 ± 3.2</td><td>89.3 ± 0.1</td><td>77.2 ± 2.7</td><td>47.1 ± 2.3</td><td>78.1 ± 0.9</td><td>79.9</td>
+            </tr>
+            <tr>
+              <td>FlowPolicy</td><td>1</td><td>69.0 ± 2.6</td><td>91.1 ± 0.2</td><td>71.9 ± 1.2</td><td>45.2 ± 0.9</td><td>77.9 ± 0.6</td><td>79.4</td>
+            </tr>
+            <tr>
+              <td>FreqPolicy</td><td>-</td><td>68.6 ± 0.8</td><td>85.4 ± 0.2</td><td>66.6 ± 2.0</td><td>46.4 ± 2.1</td><td>74.4 ± 2.4</td><td>75.1</td>
+            </tr>
+            <tr class="has-background-dark has-text-white has-text-weight-bold">
+              <td>FocalPolicy (Ours)</td><td>1</td><td>76.9 ± 2.2</td><td>91.4 ± 0.1</td><td>81.9 ± 1.6</td><td>51.8 ± 3.8</td><td>85.1 ± 1.6</td><td>83.6</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-      <div class="column is-half has-text-centered">
-        <h4 class="title is-5 mb-3">Learning Efficiency</h4>
-        <img src="./static/images/learning_curves.png" alt="Learning Curves" class="method-image">
-        <p class="is-size-7 mt-2 text-justify px-3"><strong>Figure 4:</strong> Benefiting from higher target-signal propagation efficiency via Locally Anchored Sampling (LAS), FocalPolicy converges faster to higher success rates compared to FlowPolicy.</p>
+      <div class="highlight-box mt-4">
+        <p class="analysis-text">
+          <strong>Analysis:</strong> As presented in Table 1, FocalPolicy establishes a new state-of-the-art across the evaluated benchmarks. It achieves an impressive average success rate of <strong>83.6%</strong>, substantially outperforming existing leading baselines such as DP3 (79.9%) and FlowPolicy (79.4%). The superiority of our approach is particularly evident in tasks demanding extended temporal dependencies and multi-stage interactions (e.g., MetaWorld Very Hard tasks), proving that distal foresight effectively guides complex action distributions.
+        </p>
       </div>
     </div>
 
-    <div class="columns is-multiline">
-      <div class="column is-full">
-        <h4 class="title is-5 mb-3">Quantitative Comparison (Table 1)</h4>
-        <div class="table-container">
-          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-size-6">
-            <thead>
-              <tr class="has-background-grey-lighter">
-                <th>Method</th>
-                <th>NFE</th>
-                <th>Adroit<br>(3)</th>
-                <th>MetaWorld<br>Easy (28)</th>
-                <th>MetaWorld<br>Medium (11)</th>
-                <th>MetaWorld<br>Hard (6)</th>
-                <th>MetaWorld<br>Very Hard (5)</th>
-                <th>Average</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>DP</td><td>10</td><td>31.7</td><td>83.6</td><td>31.1</td><td>9.0</td><td>26.6</td><td>55.9</td>
-              </tr>
-              <tr>
-                <td>ManiCM</td><td>1</td><td>72.3</td><td>83.6</td><td>55.6</td><td>33.3</td><td>67.0</td><td>69.9</td>
-              </tr>
-              <tr>
-                <td>SDM</td><td>1</td><td>74.0</td><td>86.5</td><td>65.8</td><td>35.8</td><td>71.6</td><td>74.4</td>
-              </tr>
-              <tr>
-                <td>DP3</td><td>10</td><td>70.4 ± 3.2</td><td>89.3 ± 0.1</td><td>77.2 ± 2.7</td><td>47.1 ± 2.3</td><td>78.1 ± 0.9</td><td>79.9</td>
-              </tr>
-              <tr>
-                <td>FlowPolicy</td><td>1</td><td>69.0 ± 2.6</td><td>91.1 ± 0.2</td><td>71.9 ± 1.2</td><td>45.2 ± 0.9</td><td>77.9 ± 0.6</td><td>79.4</td>
-              </tr>
-              <tr>
-                <td>FreqPolicy</td><td>-</td><td>68.6 ± 0.8</td><td>85.4 ± 0.2</td><td>66.6 ± 2.0</td><td>46.4 ± 2.1</td><td>74.4 ± 2.4</td><td>75.1</td>
-              </tr>
-              <tr class="has-background-dark has-text-white has-text-weight-bold">
-                <td>FocalPolicy (Ours)</td><td>1</td><td>76.9 ± 2.2</td><td>91.4 ± 0.1</td><td>81.9 ± 1.6</td><td>51.8 ± 3.8</td><td>85.1 ± 1.6</td><td>83.6</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+    <div class="mb-6">
+      <h4 class="title is-4 has-text-centered mb-4">2. Generalizability of Core Modules</h4>
+      <div class="table-container">
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-size-7" style="margin: 0 auto;">
+          <thead>
+            <tr class="has-background-grey-lighter">
+              <th rowspan="2">Method</th>
+              <th colspan="3">Adroit</th>
+              <th colspan="4">MetaWorld</th>
+              <th rowspan="2">Average</th>
+            </tr>
+            <tr class="has-background-grey-lighter">
+              <th>Hammer</th>
+              <th>Door</th>
+              <th>Pen</th>
+              <th>Sweep-Into</th>
+              <th>Hand-Insert</th>
+              <th>Pick-Place</th>
+              <th>Disassemble</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>DP3</td>
+              <td>85.7 ± 8.3</td><td>53.5 ± 5.1</td><td>98.3 ± 2.9</td><td>60.7 ± 11.9</td><td>14.3 ± 2.9</td><td>15.3 ± 0.6</td><td>61.7 ± 9.3</td><td>55.4</td>
+            </tr>
+            <tr>
+              <td>DP3 w. Ours</td>
+              <td>98.3 ± 1.5</td><td>58.3 ± 2.5</td><td>94.0 ± 0.0</td><td>53.0 ± 6.2</td><td>61.0 ± 3.5</td><td>37.3 ± 31.8</td><td>16.0 ± 2.6</td><td>60.6</td>
+            </tr>
+            <tr>
+              <td>FlowPolicy</td>
+              <td>59.3 ± 3.5</td><td>59.7 ± 2.1</td><td>98.7 ± 2.3</td><td>61.3 ± 3.2</td><td>62.7 ± 4.5</td><td>62.3 ± 17.6</td><td>16.5 ± 0.7</td><td>55.3</td>
+            </tr>
+            <tr>
+              <td>FlowPolicy w. Ours</td>
+              <td>99.7 ± 0.6</td><td>58.3 ± 3.8</td><td>53.0 ± 3.5</td><td>67.5 ± 1.3</td><td>70.7 ± 22.0</td><td>29.3 ± 16.2</td><td>70.7 ± 4.2</td><td>63.3</td>
+            </tr>
+            <tr class="has-background-dark has-text-white has-text-weight-bold">
+              <td>FocalPolicy (Ours)</td>
+              <td>100.0 ± 0.0</td><td>63.2 ± 5.3</td><td>67.5 ± 1.3</td><td>70.7 ± 22.0</td><td>29.3 ± 16.2</td><td>70.7 ± 4.2</td><td>86.7 ± 1.5</td><td>69.7</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-
-      <div class="column is-full mt-4">
-        <h4 class="title is-5 mb-3">Module Generalizability on Specific Tasks (Table 2)</h4>
-        <div class="table-container">
-          <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth is-size-7">
-            <thead>
-              <tr class="has-background-grey-lighter">
-                <th rowspan="2">Method</th>
-                <th colspan="3">Adroit</th>
-                <th colspan="4">MetaWorld</th>
-                <th rowspan="2">Average</th>
-              </tr>
-              <tr class="has-background-grey-lighter">
-                <th>Hammer</th>
-                <th>Door</th>
-                <th>Pen</th>
-                <th>Sweep-Into</th>
-                <th>Hand-Insert</th>
-                <th>Pick-Place</th>
-                <th>Disassemble</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>DP3</td>
-                <td>85.7 ± 8.3</td><td>53.5 ± 5.1</td><td>98.3 ± 2.9</td><td>60.7 ± 11.9</td><td>14.3 ± 2.9</td><td>15.3 ± 0.6</td><td>61.7 ± 9.3</td><td>55.4</td>
-              </tr>
-              <tr>
-                <td>DP3 w. Ours</td>
-                <td>98.3 ± 1.5</td><td>58.3 ± 2.5</td><td>94.0 ± 0.0</td><td>53.0 ± 6.2</td><td>61.0 ± 3.5</td><td>37.3 ± 31.8</td><td>16.0 ± 2.6</td><td>60.6</td>
-              </tr>
-              <tr>
-                <td>FlowPolicy</td>
-                <td>59.3 ± 3.5</td><td>59.7 ± 2.1</td><td>98.7 ± 2.3</td><td>61.3 ± 3.2</td><td>62.7 ± 4.5</td><td>62.3 ± 17.6</td><td>16.5 ± 0.7</td><td>55.3</td>
-              </tr>
-              <tr>
-                <td>FlowPolicy w. Ours</td>
-                <td>99.7 ± 0.6</td><td>58.3 ± 3.8</td><td>53.0 ± 3.5</td><td>67.5 ± 1.3</td><td>70.7 ± 22.0</td><td>29.3 ± 16.2</td><td>70.7 ± 4.2</td><td>63.3</td>
-              </tr>
-              <tr>
-                <td>FreqPolicy</td>
-                <td>94.3 ± 2.1</td><td>58.3 ± 3.8</td><td>53.0 ± 3.5</td><td>15.3 ± 4.5</td><td>0.0 ± 0.0</td><td>16.0 ± 3.0</td><td>57.7 ± 4.2</td><td>57.8</td>
-              </tr>
-              <tr class="has-background-dark has-text-white has-text-weight-bold">
-                <td>FocalPolicy (Ours)</td>
-                <td>100.0 ± 0.0</td><td>63.2 ± 5.3</td><td>67.5 ± 1.3</td><td>70.7 ± 22.0</td><td>29.3 ± 16.2</td><td>70.7 ± 4.2</td><td>86.7 ± 1.5</td><td>69.7</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+      <div class="highlight-box mt-4">
+        <p class="analysis-text">
+          <strong>Analysis:</strong> Table 2 verifies the plug-and-play generalizability of our proposed modules (FCO and LAS). Integrating our modules into existing baselines (e.g., DP3 and FlowPolicy) consistently elevates their performance across various specific tasks. For instance, incorporating our modules into FlowPolicy increases its average success rate from 55.3% to 63.3%, confirming that optimizing cross-chunk coherence and target-signal propagation benefits the foundational architecture universally.
+        </p>
       </div>
     </div>
+
+    <div class="mb-6">
+      <h4 class="title is-4 has-text-centered mb-4">3. Mitigation of Compounding Errors</h4>
+      <img src="./static/images/compounding_errors.png" alt="Compounding Errors" class="sim-image">
+      <div class="highlight-box mt-4">
+        <p class="analysis-text">
+          <strong>Analysis:</strong> As illustrated in Figure 7 (3D end-effector trajectories and error curves), FocalPolicy exhibits a distinct capability to mitigate compounding errors. Unlike standard flow matching policies that optimize chunks independently—resulting in disjointed spatial deviation—FocalPolicy utilizes frequency-domain structural regularization to preserve macroscopic trends. This foresight allows the policy to track expert macro-trajectories smoothly and prevents the catastrophic divergence typically observed in extended multi-stage manipulation.
+        </p>
+      </div>
+    </div>
+
+    <div class="mb-6">
+      <h4 class="title is-4 has-text-centered mb-4">4. Learning Efficiency</h4>
+      <img src="./static/images/learning_curves.png" alt="Learning Curves" class="sim-image">
+      <div class="highlight-box mt-4">
+        <p class="analysis-text">
+          <strong>Analysis:</strong> Figure 4 showcases the success rate progression across training epochs. FocalPolicy not only converges more rapidly than the baselines but also maintains a more stable asymptote. This accelerated learning efficiency is primarily attributed to Locally Anchored Sampling (LAS), which circumvents the variance bottlenecks of uniform sampling by actively anchoring the time flow toward high-fidelity terminal regions, thereby ensuring robust target-signal propagation.
+        </p>
+      </div>
+    </div>
+
   </div>
 </section>
 
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered section-title">Real-World Main Results & Analysis</h2>
-    <p class="has-text-centered mb-5">Quantitative validation across six long-horizon staged real-world robotic tasks.</p>
+    <p class="has-text-centered mb-5">Quantitative validation across six multi-stage real-world robotic tasks.</p>
     
     <div class="columns is-centered mb-5">
       <div class="column is-four-fifths has-text-centered">
@@ -405,15 +486,15 @@
     <div class="content text-justify box highlight-box">
       <h4 class="title is-4">Core Empirical Findings</h4>
       <p>
-        The real-world evaluation encompasses six complex long-horizon tasks ranging from two to four stages (e.g., Water Pouring, Drawer Loading, Pot Loading, Tower Stacking, Cup Matching, and Object Sorting). The empirical results (shown above) demonstrate that <strong>FocalPolicy consistently outperforms existing baselines across all stages of every task</strong>, thoroughly validating its exceptional capability in capturing complex long-horizon action distributions.
+        The real-world evaluation encompasses six complex multi-stage tasks ranging from two to four stages (e.g., Water Pouring, Drawer Loading, Pot Loading, Tower Stacking, Cup Matching, and Object Sorting). The empirical results demonstrate that <strong>FocalPolicy consistently outperforms existing baselines across all stages of every task</strong>, thoroughly validating its exceptional capability in capturing complex multi-chunk action distributions.
       </p>
       <p>
         <strong>1. Mitigating Performance Decline in Final Stages:</strong><br>
-        Notably, the performance advantage of FocalPolicy is most pronounced in the final stages of the tasks. Traditional behavior cloning and action chunking strategies (e.g., FlowPolicy) often suffer from sharp performance degradation as execution progresses due to compounding errors. By leveraging the Foresight Composite Objective (FCO), FocalPolicy proactively predicts longer macro-trajectories and effectively bridges inter-chunk discontinuities, thereby substantially mitigating the compounding errors inherent in imitation learning.
+        Notably, the performance advantage of FocalPolicy is most pronounced in the final stages of the tasks. Traditional behavior cloning and action chunking strategies (e.g., FlowPolicy) often suffer from sharp performance degradation as execution progresses due to compounding errors. By leveraging the Foresight Composite Objective (FCO), FocalPolicy proactively predicts longer macro-trajectories and effectively bridges inter-chunk discontinuities, thereby substantially mitigating the compounding errors inherent in sequential execution.
       </p>
       <p>
-        <strong>2. Long-Horizon Temporal Coherence:</strong><br>
-        In both open-loop and closed-loop high-dimensional manipulation scenarios, FocalPolicy exhibits exceptional robustness compared to FlowPolicy, which lacks long-horizon spatiotemporal modeling. By structurally constraining global motion trends (low-frequency) and local manipulation details (high-frequency) in the spectral domain, our policy maintains highly coherent trajectories that closely align with expert demonstrations over extended horizons, ensuring safe and efficient real-world deployment.
+        <strong>2. Distal Temporal Coherence:</strong><br>
+        In both open-loop and closed-loop high-dimensional manipulation scenarios, FocalPolicy exhibits exceptional robustness compared to FlowPolicy, which lacks distal spatiotemporal modeling. By structurally constraining global motion trends (low-frequency) and local manipulation details (high-frequency) in the spectral domain, our policy maintains highly coherent trajectories that closely align with expert demonstrations across extended temporal dependencies, ensuring safe and efficient real-world deployment.
       </p>
     </div>
   </div>
@@ -440,6 +521,49 @@
     </p>
   </div>
 </footer>
+
+<script>
+  let currentSlideIndex = 0;
+
+  function moveCarousel(direction) {
+    const track = document.getElementById('videoTrack');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const totalSlides = slides.length;
+    
+    // Determine number of visible slides based on window width
+    const visibleSlides = window.innerWidth <= 768 ? 1 : 3;
+    const maxIndex = totalSlides - visibleSlides;
+
+    currentSlideIndex += direction;
+    
+    // Boundary checks
+    if (currentSlideIndex < 0) {
+      currentSlideIndex = 0;
+    }
+    if (currentSlideIndex > maxIndex) {
+      currentSlideIndex = maxIndex;
+    }
+    
+    // The slide width plus the gap (20px)
+    const slideWidth = slides[0].getBoundingClientRect().width + 20; 
+    track.style.transform = `translateX(-${currentSlideIndex * slideWidth}px)`;
+  }
+
+  // Adjust carousel position on window resize to prevent layout breaking
+  window.addEventListener('resize', () => {
+    const track = document.getElementById('videoTrack');
+    const slides = document.querySelectorAll('.carousel-slide');
+    const visibleSlides = window.innerWidth <= 768 ? 1 : 3;
+    const maxIndex = slides.length - visibleSlides;
+    
+    if (currentSlideIndex > maxIndex) {
+      currentSlideIndex = maxIndex;
+    }
+    
+    const slideWidth = slides[0].getBoundingClientRect().width + 20;
+    track.style.transform = `translateX(-${currentSlideIndex * slideWidth}px)`;
+  });
+</script>
 
 </body>
 </html>
