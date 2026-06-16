@@ -14,14 +14,16 @@
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <style>
-    body { font-family: 'Noto Sans', sans-serif; }
+    body { font-family: 'Noto Sans', sans-serif; line-height: 1.25; color: #000000; }
     .author-block { display: inline-block; margin-right: 15px; font-size: 1.2rem;}
     .publication-title { font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
     .teaser-image, .method-image { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-    .abstract-content { text-align: justify; font-size: 1.1rem; line-height: 1.6; }
+    .abstract-content { text-align: justify; font-size: 1.1rem; }
     .section-title { font-weight: 600; margin-bottom: 1.5rem; }
     .video-container { border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
     .highlight-box { background-color: #f5f7fa; padding: 1.5rem; border-radius: 8px; border-left: 5px solid #3273dc; }
+    .table th { text-align: center !important; vertical-align: middle !important; }
+    .table td { vertical-align: middle !important; }
   </style>
 </head>
 <body>
@@ -162,34 +164,100 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered section-title">Methodology: Pipeline & Core Modules</h2>
-    <img src="./static/images/pipeline.png" alt="FocalPolicy Pipeline" class="method-image mb-5">
-    
-    <div class="columns">
-      <div class="column is-half">
-        <div class="box h-100">
-          <h4 class="title is-4">1. Foresight Composite Objective (FCO)</h4>
-          <p class="text-justify">
-            FCO bridges inter-chunk discontinuities by combining intra-chunk refinement with foresight-aware multi-chunk modeling. We apply Discrete Cosine Transform (DCT) to project macro-trajectories into the frequency domain. The composite objective is formulated as:
-          </p>
-          <p class="has-text-centered mt-3 mb-3">
-            \(\mathcal{L}_{FCO} = \mathcal{L}_{time} + \lambda \cdot \mathcal{L}_{freq}\)
-          </p>
-          <p class="text-justify is-size-7">
-            This hybrid loss ensures precise local alignment (\(\mathcal{L}_{time}\) on a single chunk) while structurally regularizing global motion trends (\(\mathcal{L}_{freq}\) over multiple future chunks).
-          </p>
+    <h2 class="title is-3 has-text-centered section-title">Methodology Overview</h2>
+    <div class="has-text-centered mb-5">
+      <img src="./static/images/pipeline.png" alt="FocalPolicy Pipeline" class="method-image" style="width: 100%;">
+      <p class="is-size-7 mt-2"><strong>Pipeline:</strong> The policy integrates proximal time-domain alignment with multi-chunk frequency-domain structural regularization via FCO, boosted by Locally Anchored Sampling (LAS).</p>
+    </div>
+  </div>
+</section>
+
+<section class="section has-background-white-ter">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered section-title">Foresight Composite Objective (FCO)</h2>
+    <div class="content text-justify">
+      <p>
+        To bridge inter-chunk discontinuities, FCO introduces a dual-horizon optimization target. It pairs a single-chunk time-domain loss with a multi-chunk spectral loss spanning multiple future chunks. We employ the Orthonormal Discrete Cosine Transform (DCT) to map macro-trajectories into the frequency domain, where low-frequency components naturally capture global motion trends and high-frequency components retain fine execution details.
+      </p>
+      <div class="box has-text-centered">
+        $$\mathcal{L}_{FCO} = \mathcal{L}_{time} + \lambda \cdot \mathcal{L}_{freq}$$
+      </div>
+      <p>
+        Theoretical analysis establishes that this unweighted spectral loss induces concentrated, sparse gradients in the coefficient space for trend-level deviations (macroscopic drift), providing a sensitivity gain of \(\sqrt{L}\) that significantly improves the effective signal-to-noise ratio during stochastic optimization without over-smoothing.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered section-title">Locally Anchored Sampling (LAS)</h2>
+    <div class="content text-justify">
+      <p>
+        In consistency flow matching training, standard uniform time sampling imposes consistency constraints randomly along the trajectory, which dramatically weakens the propagation of true target signals. This variance bottleneck slows down the optimization of complex distribution trajectories.
+      </p>
+      <p>
+        To address this, <strong>Locally Anchored Sampling (LAS)</strong> actively biases the teacher (anchor) timestep \(r\) toward the high-fidelity terminal region using a Logit-Normal distribution, while keeping the student flow time \(\tau\) uniformly sampled.
+      </p>
+    </div>
+
+    <div class="columns is-multiline mt-4">
+      <div class="column is-full">
+        <div class="highlight-box">
+          <h4 class="title is-5 mb-2">Mathematical Formulation</h4>
+          <p>We formalize the <strong>Target-signal Propagation Efficiency \(\mathcal{E}(\tau)\)</strong> as the alignment fidelity between the consistency gradient \(g_{cons}\) and the ideal supervised gradient \(g_{sup}\):</p>
+          $$\mathcal{E}(\tau) := -\mathbb{E}_{r|\tau}\left[ \|g_{cons}(\tau,r) - g_{sup}(\tau)\|_2^2 \right]$$
+          <p class="mt-3">The anchor timestep \(r\) is sampled stochastically via a Logit-Normal reparameterization:</p>
+          $$r = \text{sigmoid}(\mu_r + \sigma_r \cdot \epsilon), \quad \epsilon \sim \mathcal{N}(0,1)$$
+          <p class="mt-3">In practice, we configure <strong>\(\mu_r = 4.0\), \(\sigma_r = 1.6\)</strong>. This creates a distribution centered tightly near the boundary (median \(r \approx 0.982\)) with a heavy left tail, maximizing teacher prediction accuracy while preserving stochastic robustness to eliminate overfitting.</p>
         </div>
       </div>
+    </div>
+
+    <div class="columns is-vcentered mt-5">
+      <div class="column is-half has-text-centered">
+        <img src="./static/images/las_distribution.png" alt="LAS Time Distribution Diagram" class="method-image">
+        <p class="is-size-7 mt-2"><strong>Figure 3 & 8:</strong> Logit-Normal time sampling mass distribution compared to vanilla uniform sampling.</p>
+      </div>
       <div class="column is-half">
-        <div class="box h-100">
-          <h4 class="title is-4">2. Locally Anchored Sampling (LAS)</h4>
-          <p class="text-justify">
-            Standard consistency flow matching relies on uniform sampling, which weakens target-signal propagation when learning complex multi-chunk distributions.
-          </p>
-          <p class="text-justify mt-2">
-            LAS anchors the teacher timestep \(r\) to a logit-normal distribution concentrated near the terminal time (\(r \sim \mathcal{N}_{logit}\)). By biasing the anchor toward the terminal boundary, LAS reinforces direct supervision of the target distribution and significantly improves the Target-Signal Propagation Efficiency.
-          </p>
-        </div>
+        <h4 class="title is-5 mb-3">Anchor Configuration Ablation (Table 6)</h4>
+        <p class="is-size-6 mb-3 text-justify">
+          Empirical validations demonstrate that local anchoring within the near-terminal region is essential. Shifting the anchor center toward earlier flow stages causes a rapid decay in target propagation efficiency, resulting in severe policy degradation:
+        </p>
+        <table class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth">
+          <thead>
+            <tr>
+              <th>Configuration of \(r\)</th>
+              <th>Anchor Center</th>
+              <th>Adroit Success Rate (%)</th>
+              <th>MetaWorld Success Rate (%)</th>
+              <th>Average (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>\(\mu_r=0.4, \sigma_r=0.5\)</td>
+              <td>\(\approx 0.6\)</td>
+              <td>14.0% (Hammer)</td>
+              <td>13.9% (Sweep-Into)</td>
+              <td>13.9%</td>
+            </tr>
+            <tr>
+              <td>\(\mu_r=1.4, \sigma_r=0.5\)</td>
+              <td>\(\approx 0.8\)</td>
+              <td>80.7% (Hammer)</td>
+              <td>47.6% (Sweep-Into)</td>
+              <td>47.6%</td>
+            </tr>
+            <tr class="has-background-link-light has-text-weight-bold">
+              <td>Ours (\(\mu_r=4.0, \sigma_r=1.6\))</td>
+              <td>\(\approx 1.0\)</td>
+              <td><strong>100.0% / 63.2%</strong></td>
+              <td><strong>70.7% / 29.3%</strong></td>
+              <td><strong>69.7%</strong></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
