@@ -26,11 +26,11 @@
     .table td { vertical-align: middle !important; text-align: center; }
     .analysis-text { text-align: justify; font-size: 1.05rem; }
 
-    /* Video Carousel Styles */
+    /* Multi-Row Video Carousel Styles */
     .carousel-container {
       position: relative;
       width: 100%;
-      padding: 0 50px; /* Space for navigation arrows */
+      padding: 0 50px; 
       overflow: hidden;
     }
     .carousel-track-wrapper {
@@ -57,7 +57,7 @@
     }
     .carousel-btn {
       position: absolute;
-      top: 45%;
+      top: 40%;
       transform: translateY(-50%);
       background: rgba(54, 54, 54, 0.7);
       color: white;
@@ -76,6 +76,12 @@
     .carousel-btn:hover { background: rgba(54, 54, 54, 1); }
     .prev-btn { left: 0; }
     .next-btn { right: 0; }
+    .stage-title {
+      border-bottom: 2px solid #eaeaea;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+      color: #363636;
+    }
 
     /* Responsive adjustment for mobile */
     @media (max-width: 768px) {
@@ -141,65 +147,58 @@
 <section class="section">
   <div class="container is-max-desktop">
     <h2 class="title is-3 has-text-centered section-title">Real-World Multi-Stage Execution</h2>
-    <p class="has-text-centered mb-5">FocalPolicy seamlessly executes sequential multi-stage tasks by bridging inter-chunk discontinuities.</p>
+    <p class="has-text-centered mb-6">FocalPolicy seamlessly executes sequential multi-stage tasks by bridging inter-chunk discontinuities.</p>
     
-    <div class="carousel-container">
-      <button class="carousel-btn prev-btn" onclick="moveCarousel(-1)"><i class="fas fa-chevron-left"></i></button>
-      
+    <h4 class="title is-4 stage-title">Two-Stage Tasks</h4>
+    <div class="carousel-container mb-6">
+      <button class="carousel-btn prev-btn" onclick="moveCarousel(-1, 'track-2stage')"><i class="fas fa-chevron-left"></i></button>
       <div class="carousel-track-wrapper">
-        <div class="carousel-track" id="videoTrack">
-          <div class="carousel-slide">
-            <div class="video-container">
-              <video autoplay controls muted loop playsinline width="100%">
-                <source src="./static/videos/water_pouring.mp4" type="video/mp4">
-              </video>
-            </div>
-            <p class="has-text-centered mt-3 has-text-weight-semibold">Water Pouring<br><span class="has-text-grey is-size-7">(2 Stages)</span></p>
-          </div>
-          <div class="carousel-slide">
-            <div class="video-container">
-              <video autoplay controls muted loop playsinline width="100%">
-                <source src="./static/videos/drawer_loading.mp4" type="video/mp4">
-              </video>
-            </div>
-            <p class="has-text-centered mt-3 has-text-weight-semibold">Drawer Loading<br><span class="has-text-grey is-size-7">(2 Stages)</span></p>
-          </div>
-          <div class="carousel-slide">
-            <div class="video-container">
-              <video autoplay controls muted loop playsinline width="100%">
-                <source src="./static/videos/pot_loading.mp4" type="video/mp4">
-              </video>
-            </div>
-            <p class="has-text-centered mt-3 has-text-weight-semibold">Pot Loading<br><span class="has-text-grey is-size-7">(3 Stages)</span></p>
-          </div>
-          <div class="carousel-slide">
-            <div class="video-container">
-              <video autoplay controls muted loop playsinline width="100%">
-                <source src="./static/videos/tower_stacking.mp4" type="video/mp4">
-              </video>
-            </div>
-            <p class="has-text-centered mt-3 has-text-weight-semibold">Tower Stacking<br><span class="has-text-grey is-size-7">(3 Stages)</span></p>
-          </div>
-          <div class="carousel-slide">
-            <div class="video-container">
-              <video autoplay controls muted loop playsinline width="100%">
-                <source src="./static/videos/cup_matching.mp4" type="video/mp4">
-              </video>
-            </div>
-            <p class="has-text-centered mt-3 has-text-weight-semibold">Cup Matching<br><span class="has-text-grey is-size-7">(4 Stages)</span></p>
-          </div>
-          <div class="carousel-slide">
-            <div class="video-container">
-              <video autoplay controls muted loop playsinline width="100%">
-                <source src="./static/videos/object_sorting.mp4" type="video/mp4">
-              </video>
-            </div>
-            <p class="has-text-centered mt-3 has-text-weight-semibold">Object Sorting<br><span class="has-text-grey is-size-7">(4 Stages)</span></p>
-          </div>
+        <div class="carousel-track" id="track-2stage">
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/drawer_loading_1.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Drawer Loading 1</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/drawer_loading_2.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Drawer Loading 2</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/drawer_loading_3.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Drawer Loading 3</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/drawer_loading_4.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Drawer Loading 4</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/water_pouring_1.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Water Pouring 1</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/water_pouring_2.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Water Pouring 2</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/water_pouring_3.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Water Pouring 3</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/water_pouring_4.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Water Pouring 4</p></div>
         </div>
       </div>
+      <button class="carousel-btn next-btn" onclick="moveCarousel(1, 'track-2stage')"><i class="fas fa-chevron-right"></i></button>
+    </div>
 
-      <button class="carousel-btn next-btn" onclick="moveCarousel(1)"><i class="fas fa-chevron-right"></i></button>
+    <h4 class="title is-4 stage-title">Three-Stage Tasks</h4>
+    <div class="carousel-container mb-6">
+      <button class="carousel-btn prev-btn" onclick="moveCarousel(-1, 'track-3stage')"><i class="fas fa-chevron-left"></i></button>
+      <div class="carousel-track-wrapper">
+        <div class="carousel-track" id="track-3stage">
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/pot_loading_1.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Pot Loading 1</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/pot_loading_2.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Pot Loading 2</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/pot_loading_3.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Pot Loading 3</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/tower_stacking_1.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Tower Stacking 1</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/tower_stacking_2.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Tower Stacking 2</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/tower_stacking_3.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Tower Stacking 3</p></div>
+        </div>
+      </div>
+      <button class="carousel-btn next-btn" onclick="moveCarousel(1, 'track-3stage')"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <h4 class="title is-4 stage-title">Four-Stage Tasks</h4>
+    <div class="carousel-container">
+      <button class="carousel-btn prev-btn" onclick="moveCarousel(-1, 'track-4stage')"><i class="fas fa-chevron-left"></i></button>
+      <div class="carousel-track-wrapper">
+        <div class="carousel-track" id="track-4stage">
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/cup_matching_1.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Cup Matching 1</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/cup_matching_2.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Cup Matching 2</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/cup_matching_3.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Cup Matching 3</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/cup_matching_4.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Cup Matching 4</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/object_sorting_1.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Object Sorting 1</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/object_sorting_2.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Object Sorting 2</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/object_sorting_3.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Object Sorting 3</p></div>
+          <div class="carousel-slide"><div class="video-container"><video autoplay controls muted loop playsinline width="100%"><source src="./static/videos/object_sorting_4.mp4" type="video/mp4"></video></div><p class="has-text-centered mt-2 has-text-weight-semibold">Object Sorting 4</p></div>
+        </div>
+      </div>
+      <button class="carousel-btn next-btn" onclick="moveCarousel(1, 'track-4stage')"><i class="fas fa-chevron-right"></i></button>
     </div>
   </div>
 </section>
@@ -476,94 +475,7 @@
     <h2 class="title is-3 has-text-centered section-title">Real-World Main Results & Analysis</h2>
     <p class="has-text-centered mb-5">Quantitative validation across six multi-stage real-world robotic tasks.</p>
     
-    <div class="columns is-centered mb-5">
-      <div class="column is-four-fifths has-text-centered">
-        <img src="./static/images/real_world_results.png" alt="Real World Main Results" class="method-image">
-        <p class="is-size-7 mt-2"><strong>Figure 6:</strong> Average success scores across sequential stages for evaluated methods. Horizontal lines signify stage-wise trajectory execution stability.</p>
-      </div>
-    </div>
-
-    <div class="content text-justify box highlight-box">
-      <h4 class="title is-4">Core Empirical Findings</h4>
-      <p>
-        The real-world evaluation encompasses six complex multi-stage tasks ranging from two to four stages (e.g., Water Pouring, Drawer Loading, Pot Loading, Tower Stacking, Cup Matching, and Object Sorting). The empirical results demonstrate that <strong>FocalPolicy consistently outperforms existing baselines across all stages of every task</strong>, thoroughly validating its exceptional capability in capturing complex multi-chunk action distributions.
-      </p>
-      <p>
-        <strong>1. Mitigating Performance Decline in Final Stages:</strong><br>
-        Notably, the performance advantage of FocalPolicy is most pronounced in the final stages of the tasks. Traditional behavior cloning and action chunking strategies (e.g., FlowPolicy) often suffer from sharp performance degradation as execution progresses due to compounding errors. By leveraging the Foresight Composite Objective (FCO), FocalPolicy proactively predicts longer macro-trajectories and effectively bridges inter-chunk discontinuities, thereby substantially mitigating the compounding errors inherent in sequential execution.
-      </p>
-      <p>
-        <strong>2. Distal Temporal Coherence:</strong><br>
-        In both open-loop and closed-loop high-dimensional manipulation scenarios, FocalPolicy exhibits exceptional robustness compared to FlowPolicy, which lacks distal spatiotemporal modeling. By structurally constraining global motion trends (low-frequency) and local manipulation details (high-frequency) in the spectral domain, our policy maintains highly coherent trajectories that closely align with expert demonstrations across extended temporal dependencies, ensuring safe and efficient real-world deployment.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered section-title">BibTeX</h2>
-    <div class="box">
-      <pre><code>@inproceedings{he2026focalpolicy,
-  title={FocalPolicy: Frequency-Optimized Chunking and Locally Anchored Flow Matching for Coherent Visuomotor Policy},
-  author={He, Qian and Yang, Zhenshuo and Liang, Wenqi and Hao, Chunhui and Sebe, Nicu and Tian, Jiandong},
-  booktitle={Proceedings of the 43rd International Conference on Machine Learning},
-  year={2026}
-}</code></pre>
-    </div>
-  </div>
-</section>
-
-<footer class="footer">
-  <div class="content has-text-centered">
-    <p>
-      This website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
-    </p>
-  </div>
-</footer>
-
-<script>
-  let currentSlideIndex = 0;
-
-  function moveCarousel(direction) {
-    const track = document.getElementById('videoTrack');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const totalSlides = slides.length;
-    
-    // Determine number of visible slides based on window width
-    const visibleSlides = window.innerWidth <= 768 ? 1 : 3;
-    const maxIndex = totalSlides - visibleSlides;
-
-    currentSlideIndex += direction;
-    
-    // Boundary checks
-    if (currentSlideIndex < 0) {
-      currentSlideIndex = 0;
-    }
-    if (currentSlideIndex > maxIndex) {
-      currentSlideIndex = maxIndex;
-    }
-    
-    // The slide width plus the gap (20px)
-    const slideWidth = slides[0].getBoundingClientRect().width + 20; 
-    track.style.transform = `translateX(-${currentSlideIndex * slideWidth}px)`;
-  }
-
-  // Adjust carousel position on window resize to prevent layout breaking
-  window.addEventListener('resize', () => {
-    const track = document.getElementById('videoTrack');
-    const slides = document.querySelectorAll('.carousel-slide');
-    const visibleSlides = window.innerWidth <= 768 ? 1 : 3;
-    const maxIndex = slides.length - visibleSlides;
-    
-    if (currentSlideIndex > maxIndex) {
-      currentSlideIndex = maxIndex;
-    }
-    
-    const slideWidth = slides[0].getBoundingClientRect().width + 20;
-    track.style.transform = `translateX(-${currentSlideIndex * slideWidth}px)`;
-  });
-</script>
-
-</body>
-</html>
+    <div class="columns is-centered is-multiline mb-5">
+      <div class="column is-full has-text-centered mb-4">
+        <img src="./static/images/real-world-tasks.png" alt="Real World Tasks" class="method-image">
+        <p class="is-size-7
