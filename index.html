@@ -2,59 +2,73 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-width=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>FocalPolicy: Frequency-Optimized Chunking and Locally Anchored Flow Matching</title>
   
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <style>
-    /* 简单的自定义样式 */
+    body { font-family: 'Noto Sans', sans-serif; }
     .author-block { display: inline-block; margin-right: 15px; font-size: 1.2rem;}
-    .publication-title { font-weight: 700; margin-top: 2rem; }
-    .teaser-image { max-width: 100%; border-radius: 8px; margin-top: 20px;}
-    .abstract-content { text-align: justify; font-size: 1.1rem; }
+    .publication-title { font-weight: 700; margin-top: 2rem; margin-bottom: 1rem; }
+    .teaser-image, .method-image { max-width: 100%; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .abstract-content { text-align: justify; font-size: 1.1rem; line-height: 1.6; }
+    .section-title { font-weight: 600; margin-bottom: 1.5rem; }
+    .video-container { border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .highlight-box { background-color: #f5f7fa; padding: 1.5rem; border-radius: 8px; border-left: 5px solid #3273dc; }
   </style>
 </head>
 <body>
 
-<section class="hero">
+<section class="hero is-light">
   <div class="hero-body">
     <div class="container is-max-desktop has-text-centered">
       <h1 class="title is-2 publication-title">
         FocalPolicy: Frequency-Optimized Chunking and Locally Anchored Flow Matching for Coherent Visuomotor Policy
       </h1>
-      <h2 class="subtitle is-4">ICML 2026</h2>
+      <h2 class="subtitle is-4 has-text-grey">ICML 2026</h2>
       
-      <div class="is-size-5">
+      <div class="is-size-5 mb-4">
         <span class="author-block">Qian He<sup>1,2,*</sup>,</span>
         <span class="author-block">Zhenshuo Yang<sup>1,2,*</sup>,</span>
         <span class="author-block">Wenqi Liang<sup>3</sup>,</span>
         <span class="author-block">Chunhui Hao<sup>1</sup>,</span>
         <span class="author-block">Nicu Sebe<sup>3</sup>,</span>
-        <span class="author-block">Jiandong Tian<sup>1</sup></span>
+        <span class="author-block">Jiandong Tian<sup>1,✉</sup></span>
       </div>
 
-      <div class="is-size-6 mt-3">
+      <div class="is-size-6 mt-3 has-text-grey">
         <span class="author-block"><sup>1</sup>State Key Laboratory of Robotics and Intelligent Systems, Shenyang Institute of Automation, CAS</span><br>
         <span class="author-block"><sup>2</sup>University of the Chinese Academy of Sciences</span><br>
         <span class="author-block"><sup>3</sup>University of Trento</span>
       </div>
       
-      <div class="is-size-6 mt-2">
-        <span class="author-block"><sup>*</sup>Equal contribution</span>
+      <div class="is-size-6 mt-2 has-text-grey">
+        <span class="author-block"><sup>*</sup>Equal contribution &nbsp;&nbsp; <sup>✉</sup>Corresponding Author</span>
       </div>
 
       <div class="buttons is-centered mt-5">
-        <a href="#" class="button is-dark is-rounded">
-          <span class="icon"><i class="fas fa-file-pdf"></i></span>
-          <span>Paper</span>
+        <a href="https://arxiv.org/abs/YOUR_ARXIV_ID" class="button is-dark is-rounded">
+          <span class="icon"><i class="ai ai-arxiv"></i></span>
+          <span>arXiv</span>
         </a>
-        <a href="#" class="button is-dark is-rounded">
+        <a href="YOUR_GITHUB_LINK" class="button is-dark is-rounded">
           <span class="icon"><i class="fab fa-github"></i></span>
-          <span>Code (Coming Soon)</span>
+          <span>Code</span>
+        </a>
+        <a href="YOUR_SIM_DATASET_LINK" class="button is-link is-rounded is-light">
+          <span class="icon"><i class="fas fa-database"></i></span>
+          <span>Sim Dataset</span>
+        </a>
+        <a href="YOUR_REAL_DATASET_LINK" class="button is-link is-rounded is-light">
+          <span class="icon"><i class="fas fa-robot"></i></span>
+          <span>Real Dataset</span>
         </a>
       </div>
     </div>
@@ -62,25 +76,58 @@
 </section>
 
 <section class="section">
-  <div class="container is-max-desktop has-text-centered">
-    <img src="./static/image/teaser.png" alt="FocalPolicy Teaser" class="teaser-image">
-    <h2 class="subtitle has-text-centered mt-3">
-      FocalPolicy employs a Foresight Composite Objective to synergize proximal precision with distal coherence across chunks.
-    </h2>
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered section-title">Real-World Long-Horizon Execution</h2>
+    <p class="has-text-centered mb-5">FocalPolicy seamlessly executes multi-stage tasks by bridging inter-chunk discontinuities.</p>
+    
+    <div class="columns is-multiline is-centered">
+      <div class="column is-half">
+        <div class="video-container">
+          <video autoplay controls muted loop playsinline width="100%">
+            <source src="./static/videos/tower_stacking.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="has-text-centered mt-2 has-text-weight-semibold">Tower Stacking (3 Stages)</p>
+      </div>
+      <div class="column is-half">
+        <div class="video-container">
+          <video autoplay controls muted loop playsinline width="100%">
+            <source src="./static/videos/cup_matching.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="has-text-centered mt-2 has-text-weight-semibold">Cup Matching (4 Stages)</p>
+      </div>
+      <div class="column is-half">
+        <div class="video-container">
+          <video autoplay controls muted loop playsinline width="100%">
+            <source src="./static/videos/pot_loading.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="has-text-centered mt-2 has-text-weight-semibold">Pot Loading (3 Stages)</p>
+      </div>
+      <div class="column is-half">
+        <div class="video-container">
+          <video autoplay controls muted loop playsinline width="100%">
+            <source src="./static/videos/object_sorting.mp4" type="video/mp4">
+          </video>
+        </div>
+        <p class="has-text-centered mt-2 has-text-weight-semibold">Object Sorting (4 Stages)</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="section">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3 has-text-centered">Abstract</h2>
-        <div class="content abstract-content">
+      <div class="column is-full">
+        <h2 class="title is-3 has-text-centered section-title">Abstract</h2>
+        <div class="content abstract-content highlight-box">
           <p>
             Visuomotor policies aim to learn complex manipulation tasks from expert demonstrations. However, generating smooth and coherent trajectories remains challenging, as it requires balancing proximal precision with distal foresight. Existing approaches typically focus on optimizing intra-chunk action distributions, often neglecting the inter-chunk coherence. Consequently, inter-chunk discontinuities significantly impede the learning of coherent long-horizon actions.
           </p>
           <p>
-            To overcome this limitation and achieve a synergetic balance between precision and foresight, we propose FocalPolicy, a foresight-aware visuomotor policy that combines Frequency-Optimized Chunking with Locally Anchored flow matching. We introduce a foresight composite objective that supervises time-domain alignment within the proximal actions while regularizing frequency-domain structure over multiple future action chunks to improve cross-chunk coherence. To efficiently learn complex action distributions, we design locally anchored sampling to enhance target signal propagation efficiency during consistency flow matching training. Extensive experiments demonstrate that our method consistently outperforms existing approaches.
+            To overcome this limitation and achieve a synergetic balance between precision and foresight, we propose <strong>FocalPolicy</strong>, a foresight-aware visuomotor policy that combines <strong>Frequency-Optimized Chunking</strong> with <strong>Locally Anchored flow matching</strong>. We introduce a foresight composite objective that supervises time-domain alignment within the proximal actions while regularizing frequency-domain structure over multiple future action chunks to improve cross-chunk coherence. To efficiently learn complex action distributions, we design locally anchored sampling to enhance target signal propagation efficiency during consistency flow matching training. Extensive experiments demonstrate that FocalPolicy outperforms existing approaches and confirm the generalizability of our modules.
           </p>
         </div>
       </div>
@@ -90,33 +137,106 @@
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Methodology</h2>
-    <img src="./static/image/pipeline.png" alt="FocalPolicy Pipeline" class="teaser-image">
-    <p class="mt-3 text-justify">
-      The pipeline of FocalPolicy. We propose Locally Anchored Sampling (LAS) to improve the training efficiency of consistency flow matching. The policy is optimized via a Foresight Composite Objective (FCO), which synergizes proximal precision with distal coherence.
-    </p>
+    <h2 class="title is-3 has-text-centered section-title">Motivation & Comparison</h2>
+    <div class="columns is-vcentered">
+      <div class="column is-half">
+        <div class="content text-justify">
+          <p>
+            Current imitation learning-based policies adopt action chunking to mitigate compounding errors. However, frameworks like Consistency Flow Matching (CFM) typically focus entirely on optimizing <strong>intra-chunk refinement</strong>.
+          </p>
+          <p>
+            Because they overlook <strong>inter-chunk discontinuities</strong>, they struggle to perceive long-horizon motion trends. This leads to disjointed execution and compounding errors over multi-stage tasks. 
+          </p>
+          <p>
+            <strong>FocalPolicy</strong> shifts the paradigm from single-chunk refinement to foresight-aware multi-chunk modeling. By utilizing prioritized learning, the policy ensures fine-grained fidelity for proximal actions while maintaining coarse structural coherence for distal trajectories.
+          </p>
+        </div>
+      </div>
+      <div class="column is-half has-text-centered">
+        <img src="./static/images/comparison.png" alt="Method Comparison" class="method-image">
+        <p class="is-size-7 mt-2"><strong>Comparison:</strong> Previous chunk-based policies (left) vs. FocalPolicy (right).</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3 has-text-centered">Real-World Execution</h2>
-    <p class="has-text-centered mb-4">Demonstrating stable long-horizon execution on multi-stage tasks like Tower Stacking and Cup Matching.</p>
-    <img src="./static/image/real_world.png" alt="Real World Experiments" class="teaser-image">
+    <h2 class="title is-3 has-text-centered section-title">Methodology: Pipeline & Core Modules</h2>
+    <img src="./static/images/pipeline.png" alt="FocalPolicy Pipeline" class="method-image mb-5">
+    
+    <div class="columns">
+      <div class="column is-half">
+        <div class="box h-100">
+          <h4 class="title is-4">1. Foresight Composite Objective (FCO)</h4>
+          <p class="text-justify">
+            FCO bridges inter-chunk discontinuities by combining intra-chunk refinement with foresight-aware multi-chunk modeling. We apply Discrete Cosine Transform (DCT) to project macro-trajectories into the frequency domain. The composite objective is formulated as:
+          </p>
+          <p class="has-text-centered mt-3 mb-3">
+            \(\mathcal{L}_{FCO} = \mathcal{L}_{time} + \lambda \cdot \mathcal{L}_{freq}\)
+          </p>
+          <p class="text-justify is-size-7">
+            This hybrid loss ensures precise local alignment (\(\mathcal{L}_{time}\) on a single chunk) while structurally regularizing global motion trends (\(\mathcal{L}_{freq}\) over multiple future chunks).
+          </p>
+        </div>
+      </div>
+      <div class="column is-half">
+        <div class="box h-100">
+          <h4 class="title is-4">2. Locally Anchored Sampling (LAS)</h4>
+          <p class="text-justify">
+            Standard consistency flow matching relies on uniform sampling, which weakens target-signal propagation when learning complex multi-chunk distributions.
+          </p>
+          <p class="text-justify mt-2">
+            LAS anchors the teacher timestep \(r\) to a logit-normal distribution concentrated near the terminal time (\(r \sim \mathcal{N}_{logit}\)). By biasing the anchor toward the terminal boundary, LAS reinforces direct supervision of the target distribution and significantly improves the Target-Signal Propagation Efficiency.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section has-background-white-ter">
+  <div class="container is-max-desktop">
+    <h2 class="title is-3 has-text-centered section-title">Simulation Results</h2>
+    <p class="has-text-centered mb-4">Evaluated across <strong>53 tasks</strong> on Adroit and MetaWorld benchmarks.</p>
+    <div class="columns is-centered is-vcentered">
+      <div class="column is-two-thirds">
+        <img src="./static/images/sim_radar.png" alt="Simulation Radar Chart" class="method-image">
+      </div>
+      <div class="column is-one-third">
+        <div class="content">
+          <ul>
+            <li><strong>State-of-the-art Performance:</strong> Achieves an average success rate of <strong>83.6%</strong>, outperforming DP3 (79.9%), FlowPolicy (79.4%), and FreqPolicy (75.1%).</li>
+            <li><strong>Reduced Compounding Errors:</strong> FCO effectively mitigates spatial trajectory drift compared to FlowPolicy over long horizons.</li>
+            <li><strong>Higher Learning Efficiency:</strong> Thanks to LAS, FocalPolicy converges faster and stabilizes more effectively during training.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <section class="section">
   <div class="container is-max-desktop">
-    <h2 class="title is-3">BibTeX</h2>
-    <pre><code>@inproceedings{he2026focalpolicy,
+    <h2 class="title is-3 has-text-centered section-title">BibTeX</h2>
+    <div class="box">
+      <pre><code>@inproceedings{he2026focalpolicy,
   title={FocalPolicy: Frequency-Optimized Chunking and Locally Anchored Flow Matching for Coherent Visuomotor Policy},
   author={He, Qian and Yang, Zhenshuo and Liang, Wenqi and Hao, Chunhui and Sebe, Nicu and Tian, Jiandong},
   booktitle={Proceedings of the 43rd International Conference on Machine Learning},
   year={2026}
 }</code></pre>
+    </div>
   </div>
 </section>
+
+<footer class="footer">
+  <div class="content has-text-centered">
+    <p>
+      This website template is borrowed from <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+    </p>
+  </div>
+</footer>
 
 </body>
 </html>
